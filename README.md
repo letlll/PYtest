@@ -1,21 +1,16 @@
 # PYtest
 
-[![Python Tests](https://github.com/username/PYtest/actions/workflows/python-test.yml/badge.svg)](https://github.com/username/PYtest/actions/workflows/python-test.yml)
-
-一个用于GitHub Actions自动化测试学习的简单Python项目。
+一个简单的Python计算器程序，可以进行基本的数学运算。
 
 ## 项目简介
 
-本项目实现了一个简单的计算器库，包含基本的数学运算功能，并通过GitHub Actions实现了自动化测试流程。
+本项目实现了一个简单的计算器程序，包含加法和乘法两种基本数学运算功能，并提供了用户交互界面。
 
 ## 项目结构
 
 ```
 PYtest/
-├── .github/
-│   └── workflows/
-│       └── python-test.yml  # GitHub Actions工作流配置
-├── main.py                  # 主模块，包含数学运算函数
+├── main.py                  # 主模块，包含数学运算函数和用户交互
 ├── test_main.py             # 测试模块，包含单元测试
 └── README.md                # 项目说明文档
 ```
@@ -25,21 +20,37 @@ PYtest/
 本项目实现了以下数学运算函数：
 
 - **加法 (add)**: 计算两个数的和
-- **减法 (subtract)**: 计算两个数的差
 - **乘法 (multiply)**: 计算两个数的积
-- **除法 (divide)**: 计算两个数的商，并处理除零异常
 
 ## 使用方法
 
-### 安装依赖
-
-本项目不需要额外的依赖，只使用Python标准库。
-
-### 运行主程序
+### 直接运行
 
 ```bash
 python main.py
 ```
+
+### 创建可执行文件
+
+可以使用PyInstaller将Python脚本打包成可执行文件：
+
+1. 首先安装PyInstaller：
+
+```bash
+pip install pyinstaller
+```
+
+2. 创建可执行文件：
+
+```bash
+# 创建单文件可执行程序
+pyinstaller --onefile main.py
+
+# 或创建带窗口的可执行程序（推荐，不会显示控制台窗口）
+pyinstaller --onefile --noconsole main.py
+```
+
+3. 生成的可执行文件将位于`dist`目录中
 
 ### 运行测试
 
@@ -55,21 +66,15 @@ python -m unittest discover
 python test_main.py
 ```
 
-## GitHub Actions自动化测试
+## 常见问题解决
 
-本项目配置了GitHub Actions工作流，当代码推送到main或master分支，或者创建针对这些分支的Pull Request时，会自动运行测试。
+如果可执行文件运行后立即闪退，可能是因为：
 
-工作流程配置文件位于 `.github/workflows/python-test.yml`，主要步骤包括：
+1. 程序执行完毕后自动关闭 - 已通过在程序末尾添加`input()`语句解决
+2. 程序出现错误 - 已添加异常处理来显示错误信息
 
-1. 检出代码
-2. 设置Python环境
-3. 安装依赖（如有）
-4. 运行单元测试
+## 注意事项
 
-## 贡献指南
-
-欢迎提交Issue和Pull Request来改进本项目。
-
-## 许可证
-
-MIT
+- 本程序使用Python 3编写
+- 创建可执行文件需要PyInstaller库
+- 程序会在结束时等待用户按回车键，防止窗口立即关闭

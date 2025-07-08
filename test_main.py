@@ -6,7 +6,7 @@
 """
 
 import unittest
-from main import add, subtract, multiply, divide
+from main import add, multiply
 
 
 class TestMathFunctions(unittest.TestCase):
@@ -26,20 +26,6 @@ class TestMathFunctions(unittest.TestCase):
         # 浮点数测试
         self.assertAlmostEqual(add(0.1, 0.2), 0.3, places=10)
     
-    def test_subtract(self):
-        """测试减法函数"""
-        # 基本测试
-        self.assertEqual(subtract(10, 4), 6)
-        self.assertEqual(subtract(5, 5), 0)
-        self.assertEqual(subtract(-5, 5), -10)
-        
-        # 边界测试
-        self.assertEqual(subtract(0, 0), 0)
-        self.assertEqual(subtract(1000000, 1), 999999)
-        
-        # 浮点数测试
-        self.assertAlmostEqual(subtract(0.3, 0.1), 0.2, places=10)
-    
     def test_multiply(self):
         """测试乘法函数"""
         # 基本测试
@@ -54,24 +40,6 @@ class TestMathFunctions(unittest.TestCase):
         
         # 浮点数测试
         self.assertAlmostEqual(multiply(0.1, 0.1), 0.01, places=10)
-    
-    def test_divide(self):
-        """测试除法函数"""
-        # 基本测试
-        self.assertEqual(divide(8, 2), 4)
-        self.assertEqual(divide(5, 2), 2.5)
-        self.assertEqual(divide(-6, 2), -3)
-        self.assertEqual(divide(-6, -2), 3)
-        
-        # 边界测试
-        self.assertEqual(divide(0, 5), 0)
-        self.assertAlmostEqual(divide(1, 3), 0.3333333333, places=5)
-        
-        # 测试除以零的异常
-        with self.assertRaises(ValueError):
-            divide(8, 0)
-        with self.assertRaises(ValueError):
-            divide(0, 0)
 
 
 if __name__ == "__main__":
